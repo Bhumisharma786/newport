@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables */
+:root {
+  --space-blue: #0a1026;
+  --space-blue2: #1a2250;
+  --space-purple: #2a1a40;
+  --space-cyan: #06b6d4;
+  --space-neon: #00d4ff;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Exo 2', sans-serif;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--space-blue) 0%, var(--space-blue2) 100%);
+}
+
+/* Hero Section Styles */
+.hero-title {
+  @apply text-3xl md:text-5xl font-bold text-white font-orbitron tracking-wider;
+  text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.hero-name {
+  @apply text-2xl md:text-3xl font-bold text-cyan-400 font-orbitron tracking-wide;
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+}
+
+.start-button {
+  @apply px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg rounded-full;
+  @apply hover:from-cyan-400 hover:to-blue-500 transition-all duration-300;
+  @apply transform hover:scale-105 active:scale-95;
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  0% { text-shadow: 0 0 10px #00d4ff; }
+  100% { text-shadow: 0 0 30px #00d4ff; }
+}
+
+/* Starfield Animation */
+@keyframes starfield {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-1000px); }
+}
+
+@keyframes shooting-star {
+  0% { transform: translateX(-100px) translateY(0px) rotate(45deg); opacity: 1; }
+  50% { opacity: 1; }
+  100% { transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg); opacity: 0; }
+}
+
+/* Nebula Effect */
+.nebula {
+  background: radial-gradient(circle at center, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+  animation: nebula 8s ease-in-out infinite;
+}
+
+/* Wormhole Effect */
+.wormhole {
+  background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.8), transparent);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Planet Styles */
+.planet {
+  @apply relative cursor-pointer transition-all duration-300;
+}
+
+.planet:hover {
+  @apply scale-110;
+  filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+}
+
+/* Loading Screen */
+.loading-screen {
+  @apply fixed inset-0 bg-black flex items-center justify-center z-50;
+}
+
+.loading-spinner {
+  @apply w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-title { @apply text-xl; }
+  .hero-name { @apply text-lg; }
+  .start-button { @apply px-6 py-3 text-base; }
+}
