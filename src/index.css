@@ -1,111 +1,69 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom CSS Variables */
 :root {
-  --space-blue: #0a1026;
-  --space-blue2: #1a2250;
-  --space-purple: #2a1a40;
-  --space-cyan: #06b6d4;
-  --space-neon: #00d4ff;
+  --main: #493129;
+  --accent1: #8b597b;
+  --accent2: #efa3a0;
+  --accent3: #ffdec7;
+  --accent4: #fde5d5;
 }
 
-/* Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
+html, body {
   font-family: 'Exo 2', sans-serif;
-  overflow: hidden;
-  background: linear-gradient(180deg, var(--space-blue) 0%, var(--space-blue2) 100%);
+  background: var(--main);
+  color: var(--accent1);
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
-/* Hero Section Styles */
-.hero-title {
-  @apply text-3xl md:text-5xl font-bold text-white font-orbitron tracking-wider;
-  text-shadow: 0 0 30px rgba(0, 212, 255, 0.8);
-  animation: glow 2s ease-in-out infinite alternate;
+.bg-main { background: var(--main); }
+.bg-accent1 { background: var(--accent1); }
+.bg-accent2 { background: var(--accent2); }
+.bg-accent3 { background: var(--accent3); }
+.bg-accent4 { background: var(--accent4); }
+.text-primary { color: var(--accent1); }
+.text-accent2 { color: var(--accent2); }
+
+section { scroll-margin-top: 80px; background: var(--main); transition: background 0.6s cubic-bezier(0.4,0,0.2,1), color 0.6s cubic-bezier(0.4,0,0.2,1); }
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--accent3);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent1);
+  border-radius: 4px;
 }
 
-.hero-name {
-  @apply text-2xl md:text-3xl font-bold text-cyan-400 font-orbitron tracking-wide;
-  text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+input, textarea {
+  font-family: inherit;
 }
 
-.start-button {
-  @apply px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg rounded-full;
-  @apply hover:from-cyan-400 hover:to-blue-500 transition-all duration-300;
-  @apply transform hover:scale-105 active:scale-95;
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-  animation: glow 2s ease-in-out infinite alternate;
+.smooth-section {
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
 }
 
-@keyframes glow {
-  0% { text-shadow: 0 0 10px #00d4ff; }
-  100% { text-shadow: 0 0 30px #00d4ff; }
+.wave-divider {
+  display: block;
+  width: 100%;
+  height: 80px;
+  line-height: 0;
 }
 
-/* Starfield Animation */
-@keyframes starfield {
-  0% { transform: translateY(0px); }
-  100% { transform: translateY(-1000px); }
+.wave-divider path {
+  fill: var(--accent1);
+  transition: fill 0.4s;
 }
 
-@keyframes shooting-star {
-  0% { transform: translateX(-100px) translateY(0px) rotate(45deg); opacity: 1; }
-  50% { opacity: 1; }
-  100% { transform: translateX(calc(100vw + 100px)) translateY(calc(100vh + 100px)) rotate(45deg); opacity: 0; }
+.dark .wave-divider path {
+  fill: var(--accent3);
 }
 
-/* Nebula Effect */
-.nebula {
-  background: radial-gradient(circle at center, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
-  animation: nebula 8s ease-in-out infinite;
-}
-
-/* Wormhole Effect */
-.wormhole {
-  background: conic-gradient(from 0deg, transparent, rgba(0, 212, 255, 0.8), transparent);
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Planet Styles */
-.planet {
-  @apply relative cursor-pointer transition-all duration-300;
-}
-
-.planet:hover {
-  @apply scale-110;
-  filter: brightness(1.2) drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
-}
-
-/* Loading Screen */
-.loading-screen {
-  @apply fixed inset-0 bg-black flex items-center justify-center z-50;
-}
-
-.loading-spinner {
-  @apply w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .hero-title { @apply text-xl; }
-  .hero-name { @apply text-lg; }
-  .start-button { @apply px-6 py-3 text-base; }
-}
+/* Remove all space/planet/star/animation/hero styles */
